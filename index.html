@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PracticalCalc — Construction &amp; Workshop Calculators</title>
+    <meta name="description" content="PracticalCalc is an offline-first collection of practical calculators for construction, DIY, workshop, mechanical, and technical tasks.">
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --primary-accent: #2563eb;
+            --text-main: #1f2937;
+            --text-muted: #4b5563;
+            --bg-page: #f9fafb;
+            --bg-card: #ffffff;
+            --bg-subtle: #f3f4f6;
+            --border: #e5e7eb;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --primary: #60a5fa;
+                --primary-accent: #3b82f6;
+                --text-main: #f3f4f6;
+                --text-muted: #9ca3af;
+                --bg-page: #111827;
+                --bg-card: #1f2937;
+                --bg-subtle: #111827;
+                --border: #374151;
+            }
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.65;
+            padding: 24px 16px;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        .container {
+            max-width: 840px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--border);
+        }
+
+        header {
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 24px;
+            margin-bottom: 32px;
+        }
+
+        .brand-title {
+            font-size: 2rem;
+            color: var(--primary);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 4px;
+        }
+
+        .brand-tagline {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+
+        .app-badge {
+            font-family: monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: var(--bg-subtle);
+            padding: 3px 8px;
+            border-radius: 4px;
+            display: inline-block;
+            border: 1px solid var(--border);
+        }
+
+        section {
+            margin-bottom: 36px;
+        }
+
+        h2 {
+            font-size: 1.3rem;
+            color: var(--primary);
+            margin-bottom: 14px;
+            font-weight: 600;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 6px;
+        }
+
+        p {
+            margin-bottom: 14px;
+            font-size: 1rem;
+            color: var(--text-main);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 14px;
+        }
+
+        .feature-card, .category-card {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 16px 20px;
+        }
+
+        .feature-card h3, .category-card h3 {
+            font-size: 1.05rem;
+            color: var(--primary);
+            margin-bottom: 6px;
+            font-weight: 600;
+        }
+
+        .feature-card p, .category-card p {
+            font-size: 0.925rem;
+            color: var(--text-muted);
+            margin-bottom: 0;
+        }
+
+        .info-box {
+            background-color: var(--bg-subtle);
+            border-left: 4px solid var(--primary-accent);
+            padding: 16px 20px;
+            border-radius: 0 8px 8px 0;
+            margin: 18px 0;
+        }
+
+        a {
+            color: var(--primary-accent);
+            text-decoration: underline;
+        }
+
+        a:hover {
+            opacity: 0.85;
+        }
+
+        .btn-link {
+            display: inline-block;
+            background-color: var(--primary-accent);
+            color: #ffffff !important;
+            text-decoration: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-top: 6px;
+        }
+
+        .btn-link:hover {
+            opacity: 0.92;
+        }
+
+        footer {
+            margin-top: 40px;
+            padding-top: 24px;
+            border-top: 1px solid var(--border);
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            text-align: center;
+        }
+
+        .footer-nav {
+            margin-bottom: 12px;
+        }
+
+        .footer-nav a {
+            margin: 0 10px;
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 24px 16px;
+            }
+            .brand-title {
+                font-size: 1.6rem;
+            }
+            .brand-tagline {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1 class="brand-title">PracticalCalc</h1>
+        <div class="brand-tagline">Construction &amp; Workshop Calculators</div>
+        <div class="app-badge">Android Application &bull; Package: <code>com.practicalcalc.app</code></div>
+    </header>
+
+    <main>
+        <section>
+            <h2>About PracticalCalc</h2>
+            <p>
+                <strong>PracticalCalc</strong> is an offline-first collection of practical calculators designed for construction, DIY, workshop, mechanical, and technical tasks.
+            </p>
+            <p>
+                Built for tradespeople, craftspeople, and DIY enthusiasts, PracticalCalc focuses on delivering instant, reliable math right on your device. The app operates with complete privacy: all calculations and historical records remain strictly on your phone.
+            </p>
+            <div class="info-box">
+                <strong>Core Highlights:</strong>
+                <ul style="margin-top: 8px; padding-left: 20px; font-size: 0.95rem;">
+                    <li><strong>Fast Calculations:</strong> Instant results as you input your dimensions and values.</li>
+                    <li><strong>100% Offline Operation:</strong> All mathematical formulas execute locally with zero network reliance.</li>
+                    <li><strong>Dual Measurement Systems:</strong> Full support for both Metric and Imperial units.</li>
+                    <li><strong>Free Utility:</strong> Accessible to everyone, supported by unobtrusive advertising.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>Key Features</h2>
+            <div class="grid-2">
+                <div class="feature-card">
+                    <h3>30+ Practical Calculators</h3>
+                    <p>Dedicated tools for concrete slabs, roofing rafters, stair layouts, Ohm's law, pulley ratios, gear speeds, and more.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Works Offline</h3>
+                    <p>Designed for use on construction jobsites, remote workshops, and basements without cellular connection.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Metric &amp; Imperial Units</h3>
+                    <p>Seamlessly switch between millimeters, centimeters, meters, inches, feet, and yards across all calculation fields.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Calculation History</h3>
+                    <p>Review and search past calculations stored locally on your device in a private offline database.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Favorites</h3>
+                    <p>Bookmark your most frequently used tools for one-tap quick access directly from the home screen.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Fast Search &amp; Filtering</h3>
+                    <p>Quickly locate the exact tool you need with real-time keyword search across all technical categories.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Calculator Categories</h2>
+            <div class="grid-2">
+                <div class="category-card">
+                    <h3>Construction</h3>
+                    <p>Concrete slabs &amp; footings, brick/block walls, roof rafters, stair stringers, and rebar estimation.</p>
+                </div>
+                <div class="category-card">
+                    <h3>DIY &amp; Home</h3>
+                    <p>Paint coverage, drywall sheet estimation, tile layout, and wallpaper requirement calculators.</p>
+                </div>
+                <div class="category-card">
+                    <h3>Workshop &amp; Woodworking</h3>
+                    <p>Board feet lumber estimation, miter &amp; bevel angle cuts, drill pilot holes, and bolt torque references.</p>
+                </div>
+                <div class="category-card">
+                    <h3>Mechanical &amp; Machining</h3>
+                    <p>Spindle RPM &amp; cutting speed, pulley ratios, gear speed reductions, and thermal metal expansion.</p>
+                </div>
+                <div class="category-card">
+                    <h3>Electrical</h3>
+                    <p>Ohm's Law, DC/AC electrical power, wire gauge resistance, and voltage drop calculations.</p>
+                </div>
+                <div class="category-card">
+                    <h3>Geometry &amp; Conversions</h3>
+                    <p>Right triangle trigonometry, circles, cylinder volumes, slope grades, and multi-unit conversions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Privacy &amp; Data Transparency</h2>
+            <p>
+                We believe practical tools should respect user privacy. PracticalCalc does not maintain user accounts, does not operate a cloud database, and never transmits your calculator inputs, history, or bookmarks off-device.
+            </p>
+            <p>
+                Third-party advertising and consent services (Google Mobile Ads and Google UMP) operate within the app in compliance with applicable privacy regulations.
+            </p>
+            <p>
+                <a class="btn-link" href="privacy-policy.html">Read Our Privacy Policy</a>
+            </p>
+        </section>
+
+        <section>
+            <h2>Support &amp; Contact</h2>
+            <p>
+                For questions, bug reports, feature suggestions, or privacy inquiries regarding PracticalCalc, please contact the developer:
+            </p>
+            <div class="info-box">
+                <strong>Publisher / Developer:</strong> Girova<br>
+                <strong>Email Contact:</strong> <a href="mailto:girova.app@gmail.com">girova.app@gmail.com</a><br>
+                <strong>Location:</strong> Italy
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-nav">
+            <a href="index.html">PracticalCalc</a> &bull;
+            <a href="privacy-policy.html">Privacy Policy</a> &bull;
+            <a href="mailto:girova.app@gmail.com">Contact</a>
+        </div>
+        <p>&copy; 2026 Girova. All rights reserved.</p>
+    </footer>
+</div>
+
+</body>
+</html>
